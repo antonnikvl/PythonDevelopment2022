@@ -79,19 +79,19 @@ class PynamesCmd(cmd.Cmd):
             res_class = self.classes_map[s[0]]
             idx = 0
             if s[0] in self.complex_class_names:
-                if len(s) < 2:
-                    print('Enter subclasss name too')
-                    correct = False
+                idx += 1
+                if len(s) < 2 or s[1] in self.gender_names:
+                    idx = 0
+                    res_class = res_class[self.complex_class_names[s[0]][0]]
                 elif not s[1] in res_class:
-                    print('Unknown subclass')
+                    print('Unknown command')
                     correct = False
                 else:
                     res_class = res_class[s[1]]
-                idx += 1
             if len(s) - idx > 1:
                 g = s[idx + 1]
                 if not g in self.gender_names:
-                    print('Unknown gender')
+                    print('Unknown command')
                     correct = False
                 else:
                     g = g[0]
